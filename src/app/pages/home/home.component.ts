@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
     servicio perlicuas.service
       */
   /* de tipo Interface Movie es un arreglo, y lo inicializo como vacio*/
+      public moviesSlideshow: Movie[]=[]
       public movies: Movie[]=[]
 
       /* Para realizaar un scroll infinito, primero debemos definir en que momento 
@@ -25,9 +26,11 @@ export class HomeComponent implements OnInit {
        const max = (document.documentElement.scrollHeight || document.body.scrollHeight);
 
        if(position > max){
-
+        this.peliculasService.getcartelera().subscribe( resp =>{
+          this.movies.push(...resp.results);
+        })
        }
-       console.log({position, max});
+      /*  console.log({position, max}); */
       }
 
 
@@ -38,6 +41,7 @@ export class HomeComponent implements OnInit {
         this.peliculasService.getcartelera().subscribe(resp =>{
           //console.log(resp.results);
           this.movies= resp.results;
+          this.moviesSlideshow= resp.results
         })   
       }
      

@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CarteleraMovies } from '../interfaces/cartelera-response';
@@ -24,6 +25,10 @@ export class PeliculasService {
   si lo llamamos en otro lugar no tendremo que definir el tipo */
   getcartelera(): Observable<CarteleraMovies> {
 
-   return this.http.get<CarteleraMovies>(`${this.urlbase}/movie/now_playing`, {params: this.params});
+   return this.http.get<CarteleraMovies>(`${this.urlbase}/movie/now_playing`, {params: this.params}).pipe(
+     tap( ()=>{
+       this.carteleraPage += 1;
+     })
+   )
   }
 }
