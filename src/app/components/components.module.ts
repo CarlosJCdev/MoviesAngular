@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { SlideshowComponent } from './slideshow/slideshow.component';
+import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-poster-grid.component';
+import { PeliculaComponent } from '../pages/pelicula/pelicula.component';
 
 
 
 @NgModule({
   declarations:
-  [NavbarComponent, SlideshowComponent],
+  [NavbarComponent, SlideshowComponent, PeliculasPosterGridComponent],
   exports: [
     NavbarComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    PeliculasPosterGridComponent
   ],
   imports: [
     CommonModule,
