@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Movie } from 'src/app/interfaces/cartelera-response';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -14,6 +14,24 @@ export class HomeComponent implements OnInit {
       */
   /* de tipo Interface Movie es un arreglo, y lo inicializo como vacio*/
       public movies: Movie[]=[]
+
+      /* Para realizaar un scroll infinito, primero debemos definir en que momento 
+      queremos que se vallan cargando los datos, en este caso sera cuando casi lleguemos
+      al final de la pantalla */
+      //Husaremos un decorador de una funciòn que se dispara cuando se hace scroll
+      @HostListener('window:scroll')
+      onScroll(){
+       const position = (document.documentElement.scrollTop || document.body.scrollTop) + 1300;
+       const max = (document.documentElement.scrollHeight || document.body.scrollHeight);
+
+       if(position > max){
+
+       }
+       console.log({position, max});
+      }
+
+
+
 
      constructor(private peliculasService: PeliculasService){}
       ngOnInit(): void {
