@@ -6,11 +6,12 @@
             <h3>{{movie.title}}</h3>
             <div class="row">
                 <div class="col-10 text-white">
-                    *******
+                    <star-rating [value]="movie.vote_average" checkedcolor="yellow" totalstars="10" uncheckedcolor="grey" size="14px" readonly="false">
+                    </star-rating>
                 </div>
                 <!-- Para que todas las peliculas tengan la misma nomenclatura de
                 votos, se agrega un pipe, con la especificaciòn de que sea un numero y una o dos decimales -->
-                <div class="col-2 text-white">{{movie.vote_average | number: '1.1-2'}}</div>
+                <div class="col-2 text-white">{{movie.vote_average | number:'1.1-2'}}</div>
             </div>
         </div>
     </div>
