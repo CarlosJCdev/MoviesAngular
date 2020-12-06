@@ -24,26 +24,29 @@ export class HomeComponent implements OnInit {
       onScroll(){
        const position = (document.documentElement.scrollTop || document.body.scrollTop) + 1300;
        const max = (document.documentElement.scrollHeight || document.body.scrollHeight);
+        /* Cuando el scroll supera el maximo de la pantalla se agregan nuevos resulatados y se cambia de 
+        pagina en la API en el servicio */
+
 
        if(position > max){
-        this.peliculasService.getcartelera().subscribe( resp =>{
-          this.movies.push(...resp.results);
+        /*Si cargando es true sale de la iteracion y ya no realizamos la llamada a la API
+        Pero si es false ejecutamos el codigo, debajo para realizar la peticion a la API */
+        if( this.peliculasService.cargando){ return;}
+
+        this.peliculasService.getcartelera().subscribe( movies =>{
+          this.movies.push(...movies);
         })
        }
       /*  console.log({position, max}); */
       }
 
-
-
-
      constructor(private peliculasService: PeliculasService){}
       ngOnInit(): void {
-        this.peliculasService.getcartelera().subscribe(resp =>{
+        this.peliculasService.getcartelera().subscribe(movies =>{
           //console.log(resp.results);
-          this.movies= resp.results;
-          this.moviesSlideshow= resp.results
+          this.movies= movies;
+          this.moviesSlideshow= movies;
         })   
       }
-     
     
 }
