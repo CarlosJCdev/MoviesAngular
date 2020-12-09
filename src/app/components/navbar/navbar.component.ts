@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  //Para navegar entre las paginas importo el componente Router
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
+  }
+/* Capturamos los datos ingresador del usuario*/
+  buscarPelicula(texto: string){
+    //Con el metodo trim elminamos los espacios en blanco tanto delate y detras del texto
+    texto= texto.trim();
+    //Si no se escribe nada en la caja de texto entonces no realizamos nada
+    if (texto.length === 0){
+      return;
+    }
+
+    console.log(texto);
   }
 
 }
