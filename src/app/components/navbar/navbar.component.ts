@@ -21,8 +21,9 @@ export class NavbarComponent implements OnInit {
     if (texto.length === 0){
       return;
     }
-
-    console.log(texto);
+    /*Navegamos hasta la pagina de busquedas, en donde recibe un arreglo de 2 segmentos,
+    la ruta de la pagina y el texto capturado del ususario */
+    this.router.navigate(['/buscar', texto]);
   }
 
 }
