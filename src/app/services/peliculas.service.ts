@@ -59,6 +59,10 @@ export class PeliculasService {
       map( resp => resp.results)
     )
   }
+      //TODO: Cada que nos movemos de paginas la paginacion se mantendra en la 1
+  resetMoviepage(){
+    this.carteleraPage= 1;
+  }
 
 
 }

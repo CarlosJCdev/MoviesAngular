@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Movie } from 'src/app/interfaces/cartelera-response';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -7,7 +7,7 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
    /*Pordiamos colocar el typo de dato de (resp), pero si lo realizamos de esta manera tendriamos que colocalor 
     en todos los lugares dode queramos llamar al metodo getcartelera, por ello lo definiremos desde el propio 
     servicio perlicuas.service
@@ -38,6 +38,10 @@ export class HomeComponent implements OnInit {
         })
        }
       /*  console.log({position, max}); */
+      }
+      //TODO: Cada que nos movemos de paginas la paginacion se mantendra en la 1
+      ngOnDestroy(){
+        this.peliculasService.resetMoviepage();
       }
 
      constructor(private peliculasService: PeliculasService){}
