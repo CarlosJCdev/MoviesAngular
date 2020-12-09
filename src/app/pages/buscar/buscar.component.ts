@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Movie } from 'src/app/interfaces/cartelera-response';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
 @Component({
@@ -8,6 +9,10 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
   styleUrls: ['./buscar.component.css']
 })
 export class BuscarComponent implements OnInit {
+
+  //TODO: Inicializamos estos dos objetos para poder usarlos en el HTML
+  public texto: string ='';
+  public movies: Movie[] = [];
 
   /*Se usara el mètodo de activatedRoute, para poder mostrar los resultados
   que correspondan con la busqueda del usuario */
@@ -19,10 +24,11 @@ export class BuscarComponent implements OnInit {
     y solo actualize las peliculas en base a los cambios de las busquedas */ 
     this.activatedRoute.params.subscribe( params =>{
       //De esta manera ya tenemos como un objeto la busqueda del usuario
-      console.log(params.texto);
+        this.texto= params.texto;
       // TODO: Ahora llamaremos al servicio para consultar la busqueda con la API
       this.peliculasService.buscarPeliculas( params.texto).subscribe(movies =>{
-        console.log(movies);
+        //Ahora el objeto movies, nos retorna un array de las busquedas
+        this.movies= movies;
       })
 
     })
