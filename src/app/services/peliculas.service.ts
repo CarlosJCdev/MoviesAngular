@@ -19,7 +19,7 @@ export class PeliculasService {
   get params(){
     return{
       api_key: 'e908733e35fdf11035afac3436393466',
-      language: 'en-US',
+      language: 'en',
       page: this.carteleraPage.toString()
     }
   }
@@ -50,7 +50,7 @@ export class PeliculasService {
 
   buscarPeliculas(texto: string): Observable<Movie[]>{
     /* Para la paginacion, no necesitamos la paginacòn, por ello la paginacion la definimos en 1  */
-    //TODO: Desestructure params para modificar la paginacion y definirma en 1, al igual que el texto
+    //TODO: Desestructure params para modificar la paginacion y definirla en 1, al igual que el texto
     const params = {...this.params, page: '1', query: texto};
     /* Realizo la consulta a la API, especificamos que los resultados son de tipo carteleramovies */
    return this.http.get<CarteleraMovies>(`${this.urlbase}/search/movie`,{
