@@ -67,7 +67,7 @@ export class PeliculasService {
   //Realizamos la peticion a la API, tomando la estrucutura de la URLBase y el id que se imprime, al 
   //dar click en la fotografia de la pelicula y tambien paso los parametros
   getDetails(id: string){
-    return this.http.get<MovieDetails>(`${this.urlbase}//movie/${id}`, {
+    return this.http.get<MovieDetails>(`${this.urlbase}/movie/${id}`, {
       params: this.params
     });
     //TODO: En este metodo para los detalles no necesitamos pasar la info por el map, por que la respuesta de la 

@@ -23,7 +23,7 @@ export class PeliculasPosterGridComponent implements OnInit {
 
   /* Metodo al hacer click en una pelicula*/
   onMovieClick( movie: Movie){
-    console.log(movie);
+   // console.log(movie);
     //Navegacion, a la pantalla de detalles, dos argumentos, la ruta y el objeto
     this.router.navigate(['/pelicula', movie.id]);
   }
