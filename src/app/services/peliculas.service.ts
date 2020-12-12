@@ -3,6 +3,7 @@ import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CarteleraMovies, Movie } from '../interfaces/cartelera-response';
+import { MovieDetails } from '../interfaces/cartelera-destails';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,15 @@ export class PeliculasService {
       //TODO: Cada que nos movemos de paginas la paginacion se mantendra en la 1
   resetMoviepage(){
     this.carteleraPage= 1;
+  }
+  //Realizamos la peticion a la API, tomando la estrucutura de la URLBase y el id que se imprime, al 
+  //dar click en la fotografia de la pelicula y tambien paso los parametros
+  getDetails(id: string){
+    return this.http.get<MovieDetails>(`${this.urlbase}//movie/${id}`, {
+      params: this.params
+    });
+    //TODO: En este metodo para los detalles no necesitamos pasar la info por el map, por que la respuesta de la 
+    //TODO: API, ya nos devuelve un objeto para poder iterarlo.
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/interfaces/cartelera-response';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -14,10 +15,17 @@ export class PeliculasPosterGridComponent implements OnInit {
   simplemente llamamos al input y lo imprimimos */
   @Input() movies: Movie[]= [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.movies);
+   // console.log(this.movies);
+  }
+
+  /* Metodo al hacer click en una pelicula*/
+  onMovieClick( movie: Movie){
+    console.log(movie);
+    //Navegacion, a la pantalla de detalles, dos argumentos, la ruta y el objeto
+    this.router.navigate(['/pelicula', movie.id]);
   }
 
 }
