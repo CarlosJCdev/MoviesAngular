@@ -93,6 +93,4 @@ export class PeliculasService {
     //TODO: En este caso si necesitamos pasar la respuesta de la API por un map, por que solo necesitamos 
     //TODO: los datos refentes al cast o el elenco de la pelicula seleccionada.
   }
-
-
 }
