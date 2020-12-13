@@ -26,7 +26,12 @@ export class PeliculaComponent implements OnInit {
     this.peliculasService.getDetails(id).subscribe( movie =>{
       console.log(movie);
       this.pelicula= movie;
-    })
+    });
+
+    //Realizamos otra peticion al servicio para que se ejecute el metodo getCredits
+    this.peliculasService.getCredits(id).subscribe(cast =>{
+      console.log(cast)
+    });
 
     //TODO: Cuando son varios argumentos en la url, debemos usar la desestructuracion para tomar solo los que nos interezan
     //TODO:   const {id , texto, } = this,activatedRouter.snapshot.params.id;

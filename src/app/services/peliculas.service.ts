@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CarteleraMovies, Movie } from '../interfaces/cartelera-response';
 import { MovieDetails } from '../interfaces/cartelera-destails';
+import { CreditsResponse } from '../interfaces/credits-response';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class PeliculasService {
   get params(){
     return{
       api_key: 'e908733e35fdf11035afac3436393466',
-      language: 'en',
+      language: 'es-ES',
       page: this.carteleraPage.toString()
     }
   }
@@ -64,14 +65,33 @@ export class PeliculasService {
   resetMoviepage(){
     this.carteleraPage= 1;
   }
+
+
+
   //Realizamos la peticion a la API, tomando la estrucutura de la URLBase y el id que se imprime, al 
   //dar click en la fotografia de la pelicula y tambien paso los parametros
   getDetails(id: string){
     return this.http.get<MovieDetails>(`${this.urlbase}/movie/${id}`, {
       params: this.params
-    });
+    }).pipe(
+      catchError( err => of(null))
+      //Controlamos los errores, si un usuario coloca un token en el URL incorrecto no se rompa la web
+    )
     //TODO: En este metodo para los detalles no necesitamos pasar la info por el map, por que la respuesta de la 
     //TODO: API, ya nos devuelve un objeto para poder iterarlo.
+  }
+
+
+
+  getCredits(id: string){
+    return this.http.get<CreditsResponse>(`${this.urlbase}/movie/${id}/credits`, {
+      params: this.params
+    }).pipe( 
+      catchError(err => of (null)),
+      map( resp => resp.cast)
+    );
+    //TODO: En este caso si necesitamos pasar la respuesta de la API por un map, por que solo necesitamos 
+    //TODO: los datos refentes al cast o el elenco de la pelicula seleccionada.
   }
 
 

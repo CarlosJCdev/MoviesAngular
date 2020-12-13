@@ -1,4 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/interfaces/cartelera-response';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -44,13 +45,25 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.peliculasService.resetMoviepage();
       }
 
-     constructor(private peliculasService: PeliculasService){}
+     constructor(private peliculasService: PeliculasService, private router: Router){}
       ngOnInit(): void {
         this.peliculasService.getcartelera().subscribe(movies =>{
           //console.log(resp.results);
           this.movies= movies;
           this.moviesSlideshow= movies;
         })   
+      }
+
+      buscarPelicula(texto: string){
+        //Con el metodo trim elminamos los espacios en blanco tanto delate y detras del texto
+        texto= texto.trim();
+        //Si no se escribe nada en la caja de texto entonces no realizamos nada
+        if (texto.length === 0){
+          return;
+        }
+        /*Navegamos hasta la pagina de busquedas, en donde recibe un arreglo de 2 segmentos,
+        la ruta de la pagina y el texto capturado del ususario */
+        this.router.navigate(['/buscar', texto]);
       }
     
 }
