@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <img [src]="pelicula.poster_path | poster" [alt]="pelicula.title" class="img-thumbnail">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-5">
         <h3>{{pelicula.title}}</h3>
 
         <div class="row">
@@ -20,10 +20,15 @@
             </div>
         </div>
         <!--con la clase mt-5 damos un espacio a los elementos -->
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col">
                 <button (click)="onRegresar()" class="btn btn-info">Regresar</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="row mt-3" *ngIf="cast.length > 0">
+    <div class="col">
+        <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
     </div>
 </div>

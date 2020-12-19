@@ -1,27 +1,25 @@
 # Peliculas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+Proyecto consulta de cartelera de peliculas.
+- Trama de la pelicula
+- Actores
+- Calificaciones
 
-## Development server
+## TMDb API
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**The movie database API**, es un conglomerado de datos de películas y programas de TV creada por una comunidad mantenida desde 2008. Cuenta con una amplia cantidad de datos abarcando carteleras internaciones.
 
-## Code scaffolding
+La comunidad cuenta con más de **200.000 desarrolladores** que utilizan la plataforma, en promedio se agregan más de **1,000 imágenes todos los días**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Es un excelente servicio para poder practicar el **consumo de API**, y poder realizarlo de diferentes maneras apartir del contexto del desarrollo.
+Ademas de esto, es una excelente manera de poder refinar las tecnicas de diseño y estructura de prescentacion de data de un buen **Front-end**.
+
+## Design
+
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Personal Web Page:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+https://jcdev.herokuapp.com/proyects

@@ -15,7 +15,9 @@ import { Cast } from 'src/app/interfaces/credits-response';
 export class PeliculaComponent implements OnInit {
 
   public pelicula: MovieDetails;
-  public cast: Cast[];
+
+  //Este cast trae toda la info sobre los detalles de las peliculas, el cual consumira la pagina slideshow
+  public cast: Cast[]= [];
 
   constructor(private activatedRouter: ActivatedRoute, private peliculasService: PeliculasService, 
     private location: Location, private router: Router) { }
@@ -25,6 +27,31 @@ export class PeliculaComponent implements OnInit {
   ngOnInit(): void {
     //ESta es una forma, aplica solo cuando es un solo argumento en la URL
    const id= this.activatedRouter.snapshot.params.id;
+
+    // ? Cuando se ejecuta el componente, se llaman los dos observables, (getDetails, getCreadits)
+    // ? los cuales podrian reducir el rendimiento de la pagina web, al ejecutarse separdamente, 
+    // ? pero podemos combinar los obervables con RXJS, con el metodo CombineLatest
+
+    /* combineLatest([
+      this.peliculasService.getPeliculaDetalle(id),
+      this.peliculasService.getCredits(id)
+      PODEMOS REALIZAR LA DESESTRUCTURACION EN EL ARGUMENTO
+      O DE MANERA TRADICIONAL;
+     -- .subscribe ((obj) =>{
+     --  const pelicula= obt[0];
+     --  const cast= obj[1];
+     --  });
+
+    ]).subscribe(( [pelicula, cast] )=>{
+      if(!pelicula){
+        this.router.navigateByUrl('/home');
+        return;
+      }
+      this.pelicula= pelicula;
+      this.cast = cast.filter(actor => actor.profile_path !== null);
+    });
+     */
+
     this.peliculasService.getDetails(id).subscribe( movie =>{
       // Si movie es null o no existe
       if( !movie){
@@ -32,14 +59,18 @@ export class PeliculaComponent implements OnInit {
         this.router.navigateByUrl('/home')
         return;
       }
-      console.log(movie);
+      /* console.log(movie); */
       this.pelicula= movie;
     });
+
+
     //Realizamos otra peticion al servicio para que se ejecute el metodo getCredits
      this.peliculasService.getCredits(id).subscribe(cast =>{
-      console.log(cast)
-      this.cast= cast;
+      /* console.log(cast); */
+      //Ahora solo se mostraran los datos que sean diferentes de null
+      this.cast= cast.filter(actor => actor.profile_path !== null);
     }); 
+
 
     //TODO: Cuando son varios argumentos en la url, debemos usar la desestructuracion para tomar solo los que nos interezan
     //TODO:   const {id , texto, } = this,activatedRouter.snapshot.params.id;
