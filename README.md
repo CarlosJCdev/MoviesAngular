@@ -16,6 +16,15 @@ Ademas de esto, es una excelente manera de poder refinar las tecnicas de diseño
 
 ## Design
 
+![](https://raw.githubusercontent.com/CarlosJCdev/MoviesAngular/master/src/assets/Captura1.JPG)
+
+![](https://raw.githubusercontent.com/CarlosJCdev/MoviesAngular/master/src/assets/Captura2.JPG)
+
+![](https://raw.githubusercontent.com/CarlosJCdev/MoviesAngular/master/src/assets/Captura3.JPG)
+
+![](https://raw.githubusercontent.com/CarlosJCdev/MoviesAngular/master/src/assets/Captura4.JPG)
+
+![](https://raw.githubusercontent.com/CarlosJCdev/MoviesAngular/master/src/assets/Captura5.JPG)
 
 ## Build
 
