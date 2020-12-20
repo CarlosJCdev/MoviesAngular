@@ -28,6 +28,9 @@ Ademas de esto, es una excelente manera de poder refinar las tecnicas de diseño
 
 ## Build
 
+- Agular CLI: 9.1.12
+- Node: 12.14.0
+- Angular: 9.1.12
 
 ## Personal Web Page:
 
